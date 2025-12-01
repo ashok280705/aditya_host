@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import axios from 'axios'
+import { useLanguage } from '../contexts/LanguageContext'
+import WelcomeHeader from './WelcomeHeader'
 
 interface TranslationResponse {
   translated_text: string
@@ -10,6 +12,7 @@ interface TranslationResponse {
 }
 
 export default function TranslationInterface() {
+  const { t } = useLanguage()
   const [inputText, setInputText] = useState('')
   const [translatedText, setTranslatedText] = useState('')
   const [sourceLang, setSourceLang] = useState('nepali')
@@ -42,24 +45,26 @@ export default function TranslationInterface() {
 
 
   return (
-    <div className="translator-shrine">
+    <>
+      <WelcomeHeader />
+      <div className="translator-shrine">
       <div className="shrine-header">
-        <h1 className="shrine-title">TEXT TRANSLATOR</h1>
+        <h1 className="shrine-title">{t('translate.title').toUpperCase()}</h1>
         <div className="decorative-border"></div>
       </div>
 
       <div className="translation-chambers">
         <div className="source-chamber">
           <div className="chamber-header">
-            <h3 className="chamber-label">From</h3>
+            <h3 className="chamber-label">{t('translate.from')}</h3>
             <div className="language-controls">
               <select
                 value={sourceLang}
                 onChange={(e) => setSourceLang(e.target.value)}
                 className="cultural-select"
               >
-                <option value="nepali">नेपाली</option>
-                <option value="sinhala">සිංහල</option>
+                <option value="nepali">{t('common.nepali')}</option>
+                <option value="sinhala">{t('common.sinhala')}</option>
               </select>
 
             </div>
@@ -68,7 +73,7 @@ export default function TranslationInterface() {
           <textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            placeholder="Type your text here for translation..."
+            placeholder={t('translate.placeholder')}
             className="sacred-textarea"
           />
         </div>
@@ -79,16 +84,16 @@ export default function TranslationInterface() {
             disabled={loading || !inputText.trim()}
             className="transform-btn"
           >
-            {loading ? 'TRANSLATING...' : 'TRANSLATE'}
+            {loading ? t('translate.loading').toUpperCase() : t('translate.button').toUpperCase()}
           </button>
         </div>
 
         <div className="target-chamber">
           <div className="chamber-header">
-            <h3 className="chamber-label">To</h3>
+            <h3 className="chamber-label">{t('translate.to')}</h3>
             <div className="language-controls">
               <select className="cultural-select">
-                <option value="english">English</option>
+                <option value="english">{t('common.english')}</option>
               </select>
 
             </div>
@@ -98,7 +103,7 @@ export default function TranslationInterface() {
             <textarea
               value={translatedText}
               readOnly
-              placeholder="Translation will appear here..."
+              placeholder={t('translate.placeholder')}
               className="sacred-textarea"
             />
             
@@ -113,5 +118,6 @@ export default function TranslationInterface() {
         </div>
       )}
     </div>
+    </>
   )
 }

@@ -474,3 +474,30 @@ body {
     padding: 40px 20px;
   }
 }
+
+.cultural-footer {
+  background: var(--bg-secondary);
+  border-top: 2px solid var(--border);
+  padding: 20px 0;
+  margin-top: 40px;
+  margin-left: 280px;
+  text-align: center;
+}
+
+.footer-content {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.footer-content p:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 1024px) {
+  .cultural-footer {
+    margin-left: 0;
+  }
+}

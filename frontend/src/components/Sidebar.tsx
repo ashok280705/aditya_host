@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface SidebarProps {
   activeTab: string
@@ -10,11 +11,12 @@ interface SidebarProps {
 
 export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   const pathname = usePathname()
+  const { t } = useLanguage()
   
   const menuItems = [
-    { id: 'text-translator', label: 'Text Translator', icon: '📝', href: '/text-translator' },
+    { id: 'text-translator', label: t('nav.translate'), icon: '📝', href: '/text-translator' },
     { id: 'image-upload', label: 'Image/PDF Upload', icon: '🖼️', href: '/image-upload' },
-    { id: 'learning-modules', label: 'Learning Modules', icon: '📚', href: '/learning-modules' },
+    { id: 'learning-modules', label: t('nav.learning'), icon: '📚', href: '/learning-modules' },
     { id: 'literature-centre', label: 'Literature Centre', icon: '📖', href: '/literature-centre' },
     { id: 'download-extension', label: 'Download Extension', icon: '⬇️', href: '/download-extension' },
   ]
