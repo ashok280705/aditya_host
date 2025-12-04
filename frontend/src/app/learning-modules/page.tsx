@@ -6,10 +6,10 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import '../cultural-styles.css'
 
 export default function LearningPage() {
-  const [activeModule, setActiveModule] = useState(null)
+  const [activeModule, setActiveModule] = useState<string | null>(null)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
-  const [quizAnswer, setQuizAnswer] = useState(null)
-  const contentRef = useRef(null)
+  const [quizAnswer, setQuizAnswer] = useState<number | null>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([])
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function LearningPage() {
     }
   }
 
-  const handleModuleClick = (module) => {
+  const handleModuleClick = (module: string) => {
     setActiveModule(activeModule === module ? null : module)
     // Auto-scroll to content after state update
     setTimeout(() => {
@@ -360,8 +360,8 @@ export default function LearningPage() {
                       {category.words.map((word, j) => (
                         <div key={j} style={{marginBottom: '6px', padding: '6px', background: '#f8fff8', borderRadius: '5px', fontSize: '0.8rem', textAlign: 'center', cursor: 'pointer', transition: 'background 0.3s ease'}}
                              onClick={() => speak(word.split(' (')[0], 'ne-NP')}
-                             onMouseEnter={(e) => e.target.style.background = '#e8f5e8'}
-                             onMouseLeave={(e) => e.target.style.background = '#f8fff8'}>
+                             onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.target as HTMLDivElement).style.background = '#e8f5e8'}
+                             onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.target as HTMLDivElement).style.background = '#f8fff8'}>
                           {word}
                         </div>
                       ))}
