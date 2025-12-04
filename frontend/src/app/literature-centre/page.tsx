@@ -138,7 +138,7 @@ export default function LiteratureCentre() {
         description: 'Access classical Sinhala drama adaptation of Kalidasa\'s Sakuntala. Use our extension to translate dramatic text.'
       }
     }
-    return contents[manuscript.title] || { downloadUrl: '#', description: 'PDF download and extension translation available.' }
+    return contents[manuscript.title as keyof typeof contents] || { downloadUrl: '#', description: 'PDF download and extension translation available.' }
   }
   
   const getManuscriptContent = (manuscript: any) => {
@@ -153,7 +153,7 @@ export default function LiteratureCentre() {
       'गिरिश कर्णको गीत': 'Girish Karna ko Geet - Modern Nepali songs with deep cultural meaning. Gi-rish Kar-na ko Geet, adhunik Nepali sangeet ko sundar parampara. Contemporary melodies that reflect the evolving spirit of Nepal.',
       'සකුන්තලා': 'Sakuntala - The timeless drama by Kalidasa adapted in Sinhala. Sa-kun-ta-la, Kalidasa-ge sada-kalik natya-ya. A beautiful adaptation of the Sanskrit masterpiece showcasing eternal love and divine intervention.'
     }
-    return contents[manuscript.title] || `${manuscript.title} - ${manuscript.description}`
+    return contents[manuscript.title as keyof typeof contents] || `${manuscript.title} - ${manuscript.description}`
   }
   
   const getVoiceSettings = (manuscript: any) => {
@@ -168,7 +168,7 @@ export default function LiteratureCentre() {
       'गिरिश कर्णको गीत': { rate: 0.9, pitch: 0.9, volume: 1, lang: 'ne-NP', voiceName: 'Nepali' },
       'සකුන්තලා': { rate: 0.8, pitch: 1.1, volume: 1, lang: 'si-LK', voiceName: 'Sinhala' }
     }
-    return settings[manuscript.title] || { rate: 1, pitch: 1, volume: 1, lang: 'en-IN', voiceName: 'Indian English' }
+    return settings[manuscript.title as keyof typeof settings] || { rate: 1, pitch: 1, volume: 1, lang: 'en-IN', voiceName: 'Indian English' }
   }
 
   const translations = {
